@@ -34,11 +34,15 @@ class FetchBooksList extends React.Component {
 		const booksList = this.props.books instanceof Array && this.props.books.length
 			? [...new Set(this.props.books)].filter((book) => {
 				return this.props.searchNote ? book.name.includes(this.props.searchNote) : book;
+			}).sort((a,b) => {
+				const difference = new Date(b.fullDate).getTime() - new Date(a.fullDate).getTime();
+				return difference === 0 ? 0 : difference > 0 ? 1 : -1;
 			}).map(item => {
 				return (
-					<div className="form-group shadow p-3 mb-5 bg-white rounded" onClick={(e) => this.check(e, item)}>
+					<div className="list-group-item list-group-item-action" onClick={(e) => this.check(e, item)}>
 						<div key={item.id}>
 							<h3>{`${item.name}`}</h3>
+							<h5>{`Added on: ${item.addedDate}`}</h5>
 						</div>
 					</div>
 				)
@@ -49,7 +53,7 @@ class FetchBooksList extends React.Component {
 				</div>
 			);
 		return (
-			<div className="container" >
+			<div className="list-group" >
 				{booksList}
 			</div>
 		);

@@ -34,8 +34,12 @@ class AddUpdateBook extends React.Component {
         event.preventDefault();
         log('in text change--->');
         log(this.props.containBook)
+        const today = new Date();
+        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        const dateAndtime = `${date} ${time}`;
         const book = this.props.containBook;
-        this.props.containsBook({ ...book, name: event.target.value })
+        this.props.containsBook({ ...book, name: event.target.value, addedDate: dateAndtime, fullDate: today })
     }
 
     render() {
