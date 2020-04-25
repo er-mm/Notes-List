@@ -43,7 +43,7 @@ class FetchBooksList extends React.Component {
 					return (
 						<div className="list-group-item list-group-item-action" onClick={(e) => this.check(e, item)}>
 							<div key={item.id}>
-								<h3>{this.props?.containBook?.id == item.id ? `${this.props.containBook.name}` : `${item.name}`}</h3>
+								<h3>{this.props?.containBook?.id === item.id ? `${this.props.containBook.name}` : `${item.name}`}</h3>
 								<h5>{`Added on: ${item.addedDate}`}</h5>
 							</div>
 						</div>
