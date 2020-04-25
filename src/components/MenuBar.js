@@ -3,6 +3,7 @@ import { log } from "../utils/myLogger";
 import { connect } from 'react-redux';
 import { addBook, deleteBook, updateBook, searchNotes, containsBook } from '../actions/todoActions';
 import _ from 'lodash';
+import { DebounceInput } from 'react-debounce-input';
 
 class MenuBar extends React.Component {
 
@@ -27,7 +28,9 @@ class MenuBar extends React.Component {
     change = (event) => {
         log('in search change- event.target.value is-->');
         log(event.target.value);
-        this.props.searchNotes(event.target.value);
+        const searchCriteria = event.target.value;
+
+        this.props.searchNotes(searchCriteria);
     }
 
     render() {
@@ -40,7 +43,16 @@ class MenuBar extends React.Component {
                         <tr>
                             <td><button type="submit" className="btn btn-primary" onClick={this.onSubmitOrUpdate}>{this.props.submitUpdateBook}</button></td>
                             <td><button type="submit" className="btn btn-primary" onClick={this.deleteBook}>{`Delete Note`}</button></td>
-                            <td><input type="text" className="form-control" id="name" name="name" onChange={this.change} autoFocus placeholder="Search Naote" /></td>
+                            {/* <td><input type="text" className="form-control" id="name" name="name" onChange={this.change} autoFocus placeholder="Search Naote" /></td> */}
+                            <td>
+                                <DebounceInput
+                                    type="text"
+                                    className="form-control"
+                                    debounceTimeout={300}
+                                    onChange={this.change}
+                                    placeholder="Search Naote"
+                                />
+                            </td>
                         </tr>
                     </tbody>
                 </table>

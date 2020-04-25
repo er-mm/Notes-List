@@ -26,9 +26,12 @@ export default function (state = initialState, action) {
             }
         case CREATE_BOOK:
             log('in reducer -> ADD Book');
+            log(state);
+            log(action.payload);
             return {
                 ...state,
-                book: action.payload
+                book: action.payload,
+                books: [...state.books, action.payload]
             };
         case DELETE_BOOK:
             log('in reducer -> DELETE Book');

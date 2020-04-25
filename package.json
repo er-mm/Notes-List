@@ -1,4 +1,5 @@
 {
+  "homepage": "http://er-mm.github.io/Notes-List",
   "name": "notes-list",
   "version": "0.1.0",
   "private": true,
@@ -6,9 +7,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "body-parser": "^1.18.3",
@@ -22,12 +20,17 @@
     "morgan": "^1.9.1",
     "nodemailer": "^4.6.7",
     "prop-types": "^15.6.2",
+    "react": "^16.13.1",
+    "react-debounce-input": "^3.2.2",
+    "react-dom": "^16.13.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-scripts": "3.4.1",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "throttle-debounce": "^2.1.0",
     "webpack-cli": "^3.0.8"
   },
   "devDependencies": {
@@ -37,6 +40,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "gh-pages": "^2.2.0",
     "nodemon": "^1.18.3",
     "webpack": "^4.16.0",
     "webpack-command": "^0.4.1",
@@ -46,7 +50,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
