@@ -1,6 +1,6 @@
 import React from 'react';
 import { LearningRedux } from "./components/LearningRedux";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 
 class App extends React.Component {
