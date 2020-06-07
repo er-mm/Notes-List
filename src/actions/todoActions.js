@@ -1,39 +1,39 @@
-import { FETCH_BOOKS, CREATE_BOOK, DELETE_BOOK, EDIT_BOOK, UPDATE_BOOK, CONTAIN_BOOK, SEARCH_NOTE } from './types';
+import { FETCH_NOTES, CREATE_NOTE, DELETE_NOTE, EDIT_NOTE, UPDATE_NOTE, CONTAIN_NOTE, SEARCH_NOTE } from './types';
 import { log } from "../utils/myLogger";
 
 // each action is a function that is to be exported
 //ES6
-export const fetchBooksList = () => dispatch => {
-    log(' Action -> fetching book list-->');
-    fetch(' http://localhost:3000/books')
+export const fetchNotesList = () => dispatch => {
+    log(' Action -> fetching note list-->');
+    fetch(' http://localhost:3000/notes')
         .then(res => res.json())
         .then(data => dispatch({
-            type: FETCH_BOOKS,
+            type: FETCH_NOTES,
             payload: data
         }));
 }
 
-export const addBook = bookDetails => dispatch => {
-    log('Action -> Adding Book -- bookDetails');
-    log(bookDetails);
-    fetch(' http://localhost:3000/books', {
+export const addNote = noteDetails => dispatch => {
+    log('Action -> Adding Note -- noteDetails');
+    log(noteDetails);
+    fetch(' http://localhost:3000/notes', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(bookDetails)
+        body: JSON.stringify(noteDetails)
     })
         .then(res => res.json())
         .then(data => dispatch({
-            type: CREATE_BOOK,
+            type: CREATE_NOTE,
             payload: data
         }));
 
 }
 
-export const deleteBook = deleteBookID => dispatch => {
-    log('Action -> deleting Book');
-    fetch(' http://localhost:3000/books/' + deleteBookID, {
+export const deleteNote = deleteNoteID => dispatch => {
+    log('Action -> deleting Note');
+    fetch(' http://localhost:3000/notes/' + deleteNoteID, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json'
@@ -41,26 +41,26 @@ export const deleteBook = deleteBookID => dispatch => {
     })
         .then(res => res.json())
         .then(data => dispatch({
-            type: DELETE_BOOK,
-            payload: deleteBookID
+            type: DELETE_NOTE,
+            payload: deleteNoteID
         }));
 
 }
 
-export const editBookDetails = book => dispatch => {
-    log('Action -> edit Book');
+export const editNoteDetails = note => dispatch => {
+    log('Action -> edit Note');
     dispatch({
-        type: EDIT_BOOK,
-        payload: book
+        type: EDIT_NOTE,
+        payload: note
     });
 
 }
 
-export const containsBook = book => dispatch => {
-    log('Action -> edit Book');
+export const containsNote = note => dispatch => {
+    log('Action -> edit Note');
     dispatch({
-        type: CONTAIN_BOOK,
-        payload: book
+        type: CONTAIN_NOTE,
+        payload: note
     });
 
 }
@@ -74,19 +74,19 @@ export const searchNotes = note => dispatch => {
 
 }
 
-export const updateBook = (bookDetails, bookID) => dispatch => {
-    log('Action -> updating -- bookDetails');
-    log(bookDetails);
-    fetch(' http://localhost:3000/books/' + bookID, {
+export const updateNote = (noteDetails, noteID) => dispatch => {
+    log('Action -> updating -- noteDetails');
+    log(noteDetails);
+    fetch(' http://localhost:3000/notes/' + noteID, {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(bookDetails)
+        body: JSON.stringify(noteDetails)
     })
         .then(res => res.json())
-        .then(bookData => dispatch({
-            type: UPDATE_BOOK,
-            payload: { bookData, bookID }
+        .then(noteData => dispatch({
+            type: UPDATE_NOTE,
+            payload: { noteData, noteID }
         }));
 }

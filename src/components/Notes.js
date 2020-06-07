@@ -1,18 +1,14 @@
 import React from "react";
 import { Provider } from 'react-redux';
-import FetchBooksList from './FetchBooksList';
-import AddUpdateBook from './AddUpdateBook';
-import { log } from "../utils/myLogger";
+import FetchNotes from './FetchNotes';
+import AddUpdateNotes from './AddUpdateNotes';
 import { ErrorBoundary } from './ErrorBoundary';
 import MenuBar from './MenuBar';
 
 import store from '../store';
 
-export class LearningRedux extends React.Component {
-	// Provider : Makes the Redux store available to the connect() calls in the component hierarchy below.
+export class Notes extends React.Component {
 	render() {
-		log('store---');
-		log(store);
 		return (
 			<ErrorBoundary>
 				<Provider store={store}>
@@ -21,12 +17,12 @@ export class LearningRedux extends React.Component {
 						<div className="row">
 							<div className="col-sm-6">
 								<div className="container">
-									<FetchBooksList />
+									<FetchNotes />
 								</div>
 							</div>
 							<div className="col-sm-6">
 								<div className="container">
-									<AddUpdateBook />
+									<AddUpdateNotes />
 								</div>
 							</div>
 						</div>

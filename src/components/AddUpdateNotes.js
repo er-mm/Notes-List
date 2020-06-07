@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { updateBook, containsBook } from '../actions/todoActions';
+import { updateNote, containsNote } from '../actions/todoActions';
 import { log } from "../utils/myLogger";
 import _ from 'lodash';
 
-class AddUpdateBook extends React.Component {
+class AddUpdateNotes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,10 +17,10 @@ class AddUpdateBook extends React.Component {
         // when it will receive a new property from state it will run
         log('next props-> in createpost--->');
         log(nextProps);
-        if (!_.isEmpty(nextProps.containBook)) {
+        if (!_.isEmpty(nextProps.containNote)) {
             log('next props-> in ifff--->');
             this.setState({
-                name: nextProps.containBook.name,
+                name: nextProps.containNote.name,
             });
         }
         else {
@@ -33,13 +33,13 @@ class AddUpdateBook extends React.Component {
     change = (event) => {
         event.preventDefault();
         log('in text change--->');
-        log(this.props.containBook)
+        log(this.props.containNote)
         const today = new Date();
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         const dateAndtime = `${date} ${time}`;
-        const book = this.props.containBook;
-        this.props.containsBook({ ...book, name: event.target.value, addedDate: dateAndtime, fullDate: today })
+        const note = this.props.containNote;
+        this.props.containsNote({ ...note, name: event.target.value, addedDate: dateAndtime, fullDate: today })
     }
 
     render() {
@@ -60,9 +60,9 @@ class AddUpdateBook extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    editableBook: state.bookStore.editableBook,
-    containBook: state.bookStore.containBook,
-    books: state.bookStore.books,
+    editableNote: state.noteStore.editableNote,
+    containNote: state.noteStore.containNote,
+    notes: state.noteStore.notes,
 })
 
-export default connect(mapStateToProps, { updateBook, containsBook })(AddUpdateBook);
+export default connect(mapStateToProps, { updateNote, containsNote })(AddUpdateNotes);

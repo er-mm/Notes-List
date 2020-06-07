@@ -1,48 +1,43 @@
 import React from "react";
-import { log } from "../utils/myLogger";
 import { connect } from 'react-redux';
-import { addBook, deleteBook, updateBook, searchNotes, containsBook } from '../actions/todoActions';
+import { addNote, deleteNote, updateNote, searchNotes, containsNote } from '../actions/todoActions';
 import _ from 'lodash';
 import { DebounceInput } from 'react-debounce-input';
 
 class MenuBar extends React.Component {
 
     onSubmitOrUpdate = () => {
-        log('on clicking save');
-        log(this.props);
-        this.props.containBook.id
-            ? this.props.updateBook(this.props.containBook, this.props.containBook.id)
-            : !_.isEmpty(this.props.containBook)
-                ? this.props.addBook(this.props.containBook)
-                : alert('Enter book name First');
-        this.props.containsBook({})
+        this.props.containNote.id
+            ? this.props.updateNote(this.props.containNote, this.props.containNote.id)
+            : !_.isEmpty(this.props.containNote)
+                ? this.props.addNote(this.props.containNote)
+                : alert('Enter note name First');
+        this.props.containsNote({})
     }
 
-    deleteBook = () => {
-        log('details of deleted book-->');
-        log(this.props.containBook);
-        this.props.deleteBook(this.props.containBook.id);
-        this.props.containsBook({})
+    deleteNote = () => {
+        if(_.isEmpty(this.props.containNote)) {
+            alert('Please select a note to delete')
+        } else {
+            this.props.deleteNote(this.props.containNote.id);
+            this.props.containsNote({})
+        }
+        
     }
 
     change = (event) => {
-        log('in search change- event.target.value is-->');
-        log(event.target.value);
         const searchCriteria = event.target.value;
-
         this.props.searchNotes(searchCriteria);
     }
 
     render() {
-        log('props in MenuBar');
-        log(this.props);
         return (
             <div className="container" align="center">
                 <table>
                     <tbody>
                         <tr>
-                            <td><button type="submit" className="btn btn-primary" onClick={this.onSubmitOrUpdate}>{this.props.submitUpdateBook}</button></td>
-                            <td><button type="submit" className="btn btn-primary" onClick={this.deleteBook}>{`Delete Note`}</button></td>
+                            <td><button type="submit" className="btn btn-primary" onClick={this.onSubmitOrUpdate}>{this.props.submitUpdateNote}</button></td>
+                            <td><button type="submit" className="btn btn-primary" onClick={this.deleteNote}>{`Delete Note`}</button></td>
                             {/* <td><input type="text" className="form-control" id="name" name="name" onChange={this.change} autoFocus placeholder="Search Naote" /></td> */}
                             <td>
                                 <DebounceInput
@@ -56,14 +51,16 @@ class MenuBar extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+                <h5>Total Notes are {this.props.notes instanceof Array ? this.props.notes.length : 'No NOtes'}</h5>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    submitUpdateBook: state.bookStore.submitUpdateBook,
-    containBook: state.bookStore.containBook
+    submitUpdateNote: state.noteStore.submitUpdateNote,
+    containNote: state.noteStore.containNote,
+    notes: state.noteStore.notes,
 })
 
-export default connect(mapStateToProps, { addBook, updateBook, containsBook, deleteBook, searchNotes })(MenuBar)
+export default connect(mapStateToProps, { addNote, updateNote, containsNote, deleteNote, searchNotes })(MenuBar)

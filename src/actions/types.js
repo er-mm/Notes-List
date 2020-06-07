@@ -1,7 +1,7 @@
-export const FETCH_BOOKS = 'FETCH_BOOKS';
-export const CREATE_BOOK = 'CREATE_BOOK';
-export const DELETE_BOOK = 'DELETE_BOOK';
-export const EDIT_BOOK = 'EDIT_BOOK';
-export const UPDATE_BOOK = 'UPDATE_BOOK';
-export const CONTAIN_BOOK = 'CONTAIN_BOOK';
+export const FETCH_NOTES = 'FETCH_NOTES';
+export const CREATE_NOTE = 'CREATE_NOTE';
+export const DELETE_NOTE = 'DELETE_NOTE';
+export const EDIT_NOTE = 'EDIT_NOTE';
+export const UPDATE_NOTE = 'UPDATE_NOTE';
+export const CONTAIN_NOTE = 'CONTAIN_NOTE';
 export const SEARCH_NOTE = 'SEARCH_NOTE';

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import bookReducer from "./bookReducer";
+import noteReducer from "./noteReducer";
 
 
 export default combineReducers({
-	bookStore: bookReducer
+	noteStore: noteReducer
 });
