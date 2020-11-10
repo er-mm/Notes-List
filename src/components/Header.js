@@ -7,7 +7,7 @@ export function Header() {
             <table>
                 <tbody>
                     <tr>
-                        <td><Link to="/learningRedux" className="btn btn-primary">Library</Link></td>
+                        <td><Link to="/learningRedux" className="btn btn-primary">Notes</Link></td>
                     </tr>
                 </tbody>
             </table>

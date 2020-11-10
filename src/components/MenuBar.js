@@ -21,8 +21,13 @@ class MenuBar extends React.Component {
     deleteBook = () => {
         log('details of deleted book-->');
         log(this.props.containBook);
-        this.props.deleteBook(this.props.containBook.id);
-        this.props.containsBook({})
+        if(_.isEmpty(this.props.containBook)) {
+            alert('Please select a note to delete')
+        } else {
+            this.props.deleteBook(this.props.containBook.id);
+            this.props.containsBook({})
+        }
+        
     }
 
     change = (event) => {
